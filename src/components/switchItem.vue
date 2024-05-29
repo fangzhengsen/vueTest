@@ -11,8 +11,7 @@
         :clearable="item.clearable || false"
         :disabled="item.disabled || false"
         v-model="item.value"
-      >
-      </el-input>
+      ></el-input>
     </div>
     <!-- inputNumber 类型-->
     <template v-if="item.type === 'inputNumber'">
@@ -60,29 +59,33 @@
         v-for="(opt, ind) in item.options"
         :key="ind"
         :label="opt.dictKey"
-        >{{ opt.dictValue }}</el-radio
-      >
+      >{{ opt.dictValue }}</el-radio>
     </el-radio-group>
     <!-- checkbox 类型-->
-    <el-checkbox-group v-else-if="item.type === 'checkbox'" v-model="item.value"  @change="item.change && item.change(item)" :disabled="item.disabled || false" :max="item.max">
+    <el-checkbox-group
+      v-else-if="item.type === 'checkbox'"
+      v-model="item.value"
+      @change="item.change && item.change(item)"
+      :disabled="item.disabled || false"
+      :max="item.max"
+    >
       <el-checkbox
         v-for="(opt, ind) in item.options"
         :key="ind"
         :disabled="opt.disabled"
         :label="opt.dictKey"
-        >{{ opt.dictValue }}</el-checkbox
-      >
+      >{{ opt.dictValue }}</el-checkbox>
     </el-checkbox-group>
     <!-- switch 类型-->
-    <el-switch 
+    <el-switch
       v-else-if="item.type === 'switch'"
-      v-model="item.value" 
+      v-model="item.value"
       :disabled="item.disabled || false"
       :active-color="item.activeColor || '#3388ff'"
       :inactive-color="item.inactiveColor || '#ededed'"
       :active-value="item.activeValue || true"
-      :inactive-value="item.inactiveValue || false">
-    </el-switch>
+      :inactive-value="item.inactiveValue || false"
+    ></el-switch>
     <!-- cascader 类型-->
     <el-cascader
       v-else-if="item.type === 'cascader'"
@@ -94,18 +97,19 @@
       :props="item.cascaderProps"
       @change="item.change(item)"
       :show-all-levels="item.showAllLevels || false"
-    >
-    </el-cascader>
+    ></el-cascader>
     <!-- slotInput 类型-->
-    <div v-else-if="item.type === 'slotInput' || item.type === 'slotTextarea'" style="display: flex; align-items: flex-end">
+    <div
+      v-else-if="item.type === 'slotInput' || item.type === 'slotTextarea'"
+      style="display: flex; align-items: flex-end"
+    >
       <el-input
         :type="item.type == 'slotTextarea' ? 'textarea' : 'input'"
         :rows="item.rows"
         :placeholder="item.placeholder || '请选择' + item.label"
         :disabled="item.inputDisabled || item.disabled || false"
         v-model="item.value"
-      >
-      </el-input>
+      ></el-input>
       <el-button
         :loading="item.loading"
         v-if="!item.disabled"
@@ -113,22 +117,13 @@
         type="primary"
         class="btn-m"
         style="margin-left: 10px"
-      >
-        {{ item.append }}
-      </el-button>
+      >{{ item.append }}</el-button>
     </div>
     <!-- slotImg 类型-->
     <div v-else-if="item.type === 'slotImg'" class="img-shot" v-loading="item.loadingShotImg">
-      <i
-        class="el-icon-refresh"
-        @click="item.callback && item.callback(item)"
-      ></i>
+      <i class="el-icon-refresh" @click="item.callback && item.callback(item)"></i>
       <el-image fit="fill" v-if="item.value" :src="item.value"></el-image>
-      <el-empty
-        description="暂无数据"
-        :image-size="item.imgSize || 85"
-        v-else
-      ></el-empty>
+      <el-empty description="暂无数据" :image-size="item.imgSize || 85" v-else></el-empty>
     </div>
     <!-- date 类型-->
     <el-date-picker
@@ -144,8 +139,7 @@
       :start-placeholder="item.startHolder || '开始日期'"
       :end-placeholder="item.endHolder || '结束日期'"
       :placeholder="item.placeholder || '请选择时间'"
-    >
-    </el-date-picker>
+    ></el-date-picker>
     <!-- timePicker 类型-->
     <el-time-picker
       v-else-if="item.type === 'timePicker'"
@@ -154,8 +148,8 @@
       :range-separator="item.rangeSeparator"
       :start-placeholder="item.startHolder || '开始时间'"
       :end-placeholder="item.endHolder || '结束时间'"
-      :placeholder="item.placeholder || '选择时间范围'">
-    </el-time-picker>
+      :placeholder="item.placeholder || '选择时间范围'"
+    ></el-time-picker>
     <!-- upload 类型-->
     <el-upload
       v-else-if="item.type === 'upload'"
@@ -179,8 +173,8 @@
 const props = defineProps({
   item: {
     type: Object,
-    default: ()=>{}
-  }
+    default: () => {},
+  },
 })
 </script>
 
